@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - seed_volume:/data
+      - cron_volume:/cron
+      # Mount keys purely for the app to function
+      - ./student_private.pem:/app/student_private.pem:ro
+    environment:
+      - TZ=UTC
+
+volumes:
+  seed_volume:
+  cron_volume:
